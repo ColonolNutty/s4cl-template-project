@@ -6,7 +6,7 @@ If installed into your Mods folder, it will display a notification upon loading 
 This project may be used as a template for which you may create your own mods (If you have any questions, feel free to join the [discord](https://discord.gg/p9Kc287) and ask them there!)
 
 In order to set the project up for use as a template for your own mod, take the following steps:
-1. Remove the the `Scripts/S4CLSampleModScripts/s4cl_sample_mod_scripts` python package and create your own python package in its place.
+1. Remove the the `Scripts/S4CLSampleModScripts/s4cl_sample_mod_scripts` python package and create your own python package in its place. (Right-Click -> New -> Python Package)
 2. Update the `Scripts/S4CLSampleModScripts/compile_scripts.py` file to point at your newly created python package.
 3. Rename the `Scripts/S4CLSampleModScripts` folder however you'd like (Be sure to update the `/compile_scripts.py` file from step 2 AND set the new folder as a Source Root (Right-click -> Mark directory as... Source Root))
 4. Remove the `Release/S4CLSampleMod` folder and create a folder with a name that matches the name used inside `/compile_scripts.py` from step 2
