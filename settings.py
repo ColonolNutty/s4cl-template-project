@@ -4,7 +4,7 @@ import os
 # Example:
 # If I set the value to "ColonolNutty"
 # compiling my scripts would output a file with the name "ColonolNutty_<script_name>.ts4script"
-creator_name = ''
+creator_name = 'Cufflinks'
 
 # Change to the location where you install your Mods at.
 if os.name == 'posix':
@@ -14,7 +14,7 @@ else:
 mods_folder = os.path.join(os_home_prefix, 'Documents', 'Electronic Arts', 'The Sims 4', 'Mods')
 # Change to the location where you have installed The Sims 4 at, this would be the folder that contains the GameVersion.txt file
 if os.name == 'posix':
-    game_folder = os.path.join(os.environ['HOME'], 'Applications', 'The Sims 4.app', 'Contents')
+    game_folder = os.path.join(os_home_prefix, 'Applications', 'The Sims 4.app', 'Contents')
 else:
     game_folder = os.path.join('E:', os.sep, 'Program Files (x86)', 'Origin Games', 'The Sims 4')
 
