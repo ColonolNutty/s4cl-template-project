@@ -4,7 +4,7 @@ import os
 # Example:
 # If I set the value to "ColonolNutty"
 # compiling my scripts would output a file with the name "ColonolNutty_<script_name>.ts4script"
-creator_name = 'Cufflinks'
+creator_name = ''
 
 # Change to the location where you install your Mods at.
 if os.name == 'posix':
