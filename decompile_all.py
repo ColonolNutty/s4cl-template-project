@@ -12,7 +12,6 @@ def unpyc3(include_ea_decompileile=False, include_decompile_directory=False):
     if include_decompile_directory:
         decompile_dir(decompile_src)
     if include_ea_decompileile:
-        print(game_folder)
         gameplay_folder_data = os.path.join(game_folder, 'Data', 'Simulation', 'Gameplay')
         gameplay_folder_game = os.path.join(game_folder, 'Python')
 

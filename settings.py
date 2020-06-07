@@ -7,9 +7,16 @@ import os
 creator_name = ''
 
 # Change to the location where you install your Mods at.
-mods_folder = os.path.join(os.environ['HOME'], 'Documents', 'Electronic Arts', 'The Sims 4', 'Mods')
+if os.name == 'posix':
+    os_home_prefix = os.environ['HOME']
+else:
+    os_home_prefix = '~'
+mods_folder = os.path.join(os_home_prefix, 'Documents', 'Electronic Arts', 'The Sims 4', 'Mods')
 # Change to the location where you have installed The Sims 4 at, this would be the folder that contains the GameVersion.txt file
-game_folder = os.path.join(os.environ['HOME'], 'Applications', 'The Sims 4.app', 'Contents')
+if os.name == 'posix':
+    game_folder = os.path.join(os.environ['HOME'], 'Applications', 'The Sims 4.app', 'Contents')
+else:
+    game_folder = os.path.join('E:', os.sep, 'Program Files (x86)', 'Origin Games', 'The Sims 4')
 
 # Set to either 'unpyc3' or 'py37dec' (py37dec is the default, however if it fails to decompile some files, feel free to change this to 'unpyc3' and try to decompile using that decompiler instead)
 compiler_name = 'py37dec'
