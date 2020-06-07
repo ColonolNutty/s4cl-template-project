@@ -29,7 +29,7 @@ compiler_name = 'py37dec'
 # 4. Inside of the <Project>/EA folder, you should see four folders (base, core, generated, simulation)
 # 5. Highlight all four of those folders and right click them. Then do Mark Directory as... Sources Root
 # 6. Delete the <Project>/EA/core/enum.py file because it causes issues when attempting to compile the scripts of your own mod.
-include_ea_decompile = True
+include_ea_decompile = False
 
 # If you want to decompile scripts from another authors mod
 # 1. Create a folder in your project with the name decompiled. i.e. <Project>/decompiled
