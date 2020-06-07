@@ -7,9 +7,9 @@ import os
 creator_name = ''
 
 # Change to the location where you install your Mods at.
-mods_folder = os.path.expanduser(os.path.join('~', 'Documents', 'Electronic Arts', 'The Sims 4', 'Mods'))
+mods_folder = os.path.join(os.environ['HOME'], 'Documents', 'Electronic Arts', 'The Sims 4', 'Mods')
 # Change to the location where you have installed The Sims 4 at, this would be the folder that contains the GameVersion.txt file
-game_folder = os.path.join('E:', os.sep, 'Program Files (x86)', 'Origin Games', 'The Sims 4')
+game_folder = os.path.join(os.environ['HOME'], 'Applications', 'The Sims 4.app', 'Contents')
 
 # Set to either 'unpyc3' or 'py37dec' (py37dec is the default, however if it fails to decompile some files, feel free to change this to 'unpyc3' and try to decompile using that decompiler instead)
 compiler_name = 'py37dec'
@@ -22,7 +22,7 @@ compiler_name = 'py37dec'
 # 4. Inside of the <Project>/EA folder, you should see four folders (base, core, generated, simulation)
 # 5. Highlight all four of those folders and right click them. Then do Mark Directory as... Sources Root
 # 6. Delete the <Project>/EA/core/enum.py file because it causes issues when attempting to compile the scripts of your own mod.
-include_ea_decompile = False
+include_ea_decompile = True
 
 # If you want to decompile scripts from another authors mod
 # 1. Create a folder in your project with the name decompiled. i.e. <Project>/decompiled
