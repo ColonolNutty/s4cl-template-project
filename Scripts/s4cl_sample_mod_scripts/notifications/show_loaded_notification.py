@@ -18,7 +18,7 @@ class S4CLSampleModShowLoadedMessage:
     @staticmethod
     @CommonEventRegistry.handle_events('s4cl_sample_mod')
     def _show_loaded_notification_when_loaded(event_data: S4CLZoneLateLoadEvent):
-        if not event_data.game_loaded:
+        if event_data.game_loaded:
             # If the game has not loaded yet, we don't want to show our notification.
             return
         S4CLSampleModShowLoadedMessage.show_loaded_notification()

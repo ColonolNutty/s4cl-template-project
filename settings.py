@@ -33,7 +33,7 @@ include_ea_decompile = False
 
 # If you want to decompile scripts from another authors mod
 # 1. Create a folder in your project with the name decompiled. i.e. <Project>/decompiled
-# 1. Put the script files (.pyc) of the mod you wish to decompile, inside of the "decompiled" folder.
+# 1. Put the script files (.pyc) of the mod you wish to decompile, inside of the "decompiled" folder. (Every ts4script file is a zip file and can be opened like one!)
 # 2. Change include_decompile_dir to True
 # 3. Run the decompile_all.py script
 # 4. It will decompile the custom scripts and put them inside of the folder: <Project>/decompiled/...
