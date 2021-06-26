@@ -227,7 +227,7 @@ class Py37PythonDecompiler:
         # Print results summary and CSV results file if requested
         print('\b\b\b\b\b\b')
         if total == 0:
-            print('      \nError, no compiled Python files found in source folder')
+            print(f'      \nError, no compiled Python files found in source folder {source_folder}')
             return
         print('Completed')
 

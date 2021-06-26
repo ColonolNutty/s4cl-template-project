@@ -10,7 +10,7 @@ def _remove_files_conflicting_with_decompile(decompile_ea_scripts: bool=False):
         os.mkdir(ea_folder)
 
     if decompile_ea_scripts:
-        print('Removing EA decompiled files before decompiling it again.')
+        # print('Removing EA decompiled files before decompiling it again.')
         to_remove_before_compile = (
             'base',
             'base.zip',
@@ -38,7 +38,7 @@ def _remove_files_conflicting_with_decompile(decompile_ea_scripts: bool=False):
         for to_remove in to_remove_before_compile:
             to_remove_path = os.path.join(os.getcwd(), ea_folder, to_remove)
             if not os.path.exists(to_remove_path):
-                print(f'Did not exist \'{to_remove_path}\'')
+                # print(f'Did not exist \'{to_remove_path}\'')
                 continue
             if os.path.isdir(to_remove_path):
                 # noinspection PyBroadException
@@ -50,7 +50,7 @@ def _remove_files_conflicting_with_decompile(decompile_ea_scripts: bool=False):
             else:
                 os.remove(to_remove_path)
     else:
-        print('Renaming enum.py to enum.py_renamed')
+        # print('Renaming enum.py to enum.py_renamed')
 
         to_fix_before_decompile = (
             os.path.join('core', 'enum.py'),
@@ -60,7 +60,7 @@ def _remove_files_conflicting_with_decompile(decompile_ea_scripts: bool=False):
         for to_fix in to_fix_before_decompile:
             to_fix_path = os.path.join(os.getcwd(), ea_folder, to_fix)
             if not os.path.exists(to_fix_path):
-                print(f'Did not exist \'{to_fix_path}\'')
+                # print(f'Did not exist \'{to_fix_path}\'')
                 continue
             if os.path.isdir(to_fix_path):
                 os.rename(to_fix_path, to_fix_path + '_renamed')
@@ -72,7 +72,7 @@ def _replace_renamed_files(decompile_ea_scripts: bool=False):
     if decompile_ea_scripts:
         return
 
-    print('Renaming enum.py_renamed to enum.py')
+    # print('Renaming enum.py_renamed to enum.py')
 
     ea_folder = 'EA'
     to_fix_after_decompile = (
@@ -83,7 +83,7 @@ def _replace_renamed_files(decompile_ea_scripts: bool=False):
     for to_fix in to_fix_after_decompile:
         to_remove_path = os.path.join(os.getcwd(), ea_folder, to_fix)
         if not os.path.exists(to_remove_path):
-            print(f'Did not exist \'{to_remove_path}\'')
+            # print(f'Did not exist \'{to_remove_path}\'')
             continue
         if os.path.isdir(to_remove_path):
             os.rename(to_remove_path, to_remove_path.rstrip('_renamed'))
