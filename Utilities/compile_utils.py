@@ -47,7 +47,7 @@ def _remove_files_conflicting_with_decompile(decompile_ea_scripts: bool=False):
             else:
                 os.remove(to_remove_path)
     else:
-        print('Renaming enum.py to enum.py_renamed')
+        # print('Renaming enum.py to enum.py_renamed')
         to_fix_before_decompile = (
             os.path.join('core', 'enum.py'),
             os.path.join('core', 'enum.pyc'),
