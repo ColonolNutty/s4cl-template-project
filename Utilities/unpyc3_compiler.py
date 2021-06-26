@@ -1,5 +1,5 @@
 import traceback
-from typing import Tuple, Iterator
+from typing import Iterator
 from zipfile import PyZipFile
 from settings import *
 
@@ -9,12 +9,12 @@ class Unpyc3PythonCompiler:
     @classmethod
     def compile_mod(
         cls,
-        names_of_modules_include: Tuple[str],
+        names_of_modules_include: Iterator[str],
         folder_path_to_output_ts4script_to: str,
         output_ts4script_name: str,
         names_of_modules_to_exclude: str=None,
         mod_creator_name: str=None,
-        folder_path_to_gather_script_modules_from: str=None
+        folder_path_to_gather_script_modules_from: str='..'
     ):
         """compile_mod(\
             names_of_modules_include,\
@@ -28,6 +28,7 @@ class Unpyc3PythonCompiler:
         Compile a mod using unpyc3.
 
         """
+        names_of_modules_include = tuple(names_of_modules_include)
         if not mod_creator_name:
             mod_creator_name = creator_name
         if not output_ts4script_name:
