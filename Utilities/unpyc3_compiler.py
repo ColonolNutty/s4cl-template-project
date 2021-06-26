@@ -1,6 +1,11 @@
+from compile_utils import _remove_files_conflicting_with_decompile, _replace_renamed_files
+
+_remove_files_conflicting_with_decompile(decompile_ea_scripts=False)
+
 import traceback
 from typing import Iterator
 from zipfile import PyZipFile
+
 from settings import *
 
 
@@ -28,6 +33,8 @@ class Unpyc3PythonCompiler:
         Compile a mod using unpyc3.
 
         """
+        from compile_utils import _remove_files_conflicting_with_decompile, _replace_renamed_files
+        _remove_files_conflicting_with_decompile(decompile_ea_scripts=False)
         names_of_modules_include = tuple(names_of_modules_include)
         if not mod_creator_name:
             mod_creator_name = creator_name
@@ -89,6 +96,8 @@ class Unpyc3PythonCompiler:
         except Exception as ex:
             print(f'Failed to create {ts4script}. {ex}')
             return
+        finally:
+            _replace_renamed_files(decompile_ea_scripts=False)
 
         # This code is meant to copy the file to the Mods folder, but in most cases, we probably do not want this to happen!
         # ts4script_mods = os.path.join(os.path.join(mods_folder), script_zip_name)
@@ -100,3 +109,6 @@ class Unpyc3PythonCompiler:
             if not os.path.isdir(os.path.join(directory_path, folder_path)):
                 continue
             yield folder_path
+
+
+_replace_renamed_files(decompile_ea_scripts=False)
