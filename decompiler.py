@@ -18,13 +18,7 @@ import os
 
 # These defaults can be edited here and/or overriden on command line
 #
-# Location of the game's zipped binary scripts (base.zip, core.zip and simulation.zip)
-if os.name == 'posix':
-    # Mac default location
-    GAME_ZIP_FOLDER = os.path.join(os.environ['HOME'], 'Applications/The Sims 4.app/Contents/Data/Simulation/Gameplay')
-else:
-    # Windows default location
-    GAME_ZIP_FOLDER = game_folder
+GAME_ZIP_FOLDER = game_folder
 
 # Default destination folder to put decompiled scripts into.
 # Will be created if not found.
