@@ -1,10 +1,8 @@
-from Utilities.compiler import compile_module
+from Utilities.unpyc3_compiler import Unpyc3PythonCompiler
 
-
-# This will compile the files found within S4CLSampleModScripts/s4cl_sample_mod_scripts and put them inside of a file named s4cl_sample_mod.ts4script
-compile_module(
-    root='..\\..\\Release\\S4CLSampleMod',
-    mod_scripts_folder='..',
-    include_folders=('s4cl_sample_mod_scripts',),
-    mod_name='s4cl_sample_mod'
+# This function invocation will compile the files found within Scripts/s4cl_sample_mod_scripts, put them inside of a file named s4cl_sample_mod.ts4script, and it will finally place that ts4script file within <Project>/Release/S4CLSampleMod.
+Unpyc3PythonCompiler.compile_mod(
+    names_of_modules_include=('s4cl_sample_mod_scripts',),
+    folder_path_to_output_ts4script_to='..\\..\\Release\\S4CLSampleMod',
+    output_ts4script_name='s4cl_sample_mod'
 )
