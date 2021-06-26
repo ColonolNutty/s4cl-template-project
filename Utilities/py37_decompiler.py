@@ -152,18 +152,47 @@ class Py37PythonDecompiler:
         # to the "thread" pool.
         source_folder = os.path.realpath(src_folder)
         destination_folder = os.path.realpath(dest_folder)
+        if source_folder == destination_folder:
+            destination_folder = os.path.join(destination_folder, '_decompiled')
+            if not os.path.exists(destination_folder):
+                os.mkdir(destination_folder)
+            else:
+                def _remove_directory_recursive(directory_path: str):
+                    for _file_in_dir in os.listdir(directory_path):
+                        _to_remove_path = os.path.join(directory_path, _file_in_dir)
+                        if os.path.isdir(_to_remove_path):
+                            # noinspection PyBroadException
+                            try:
+                                os.rmdir(_to_remove_path)
+                            except:
+                                _remove_directory_recursive(_to_remove_path)
+                                os.rmdir(_to_remove_path)
+                        else:
+                            os.remove(_to_remove_path)
+
+                # noinspection PyBroadException
+                try:
+                    os.rmdir(destination_folder)
+                except:
+                    _remove_directory_recursive(destination_folder)
+                    os.rmdir(destination_folder)
+                os.mkdir(destination_folder)
+
         for root, subFolders, files in os.walk(src_folder):
+            if root.startswith(destination_folder):
+                continue
             files = [f for f in files if os.path.splitext(f)[1].lower() == '.pyc']
             for pycFile in files:
-                total += 1
                 sub_folder = os.path.relpath(root, source_folder)
                 file_name = os.path.splitext(pycFile)[0]
                 py_file_name = file_name + '.py'
                 py_full_file_path = os.path.join(source_folder, sub_folder, py_file_name)
                 copied_file_path = os.path.join(source_folder, sub_folder, f'{pycFile}_copied')
                 pyc_full_file_path = os.path.join(source_folder, sub_folder, pycFile)
+                total += 1
                 copyfile(pyc_full_file_path, copied_file_path)
-                sys.stdout.write(os.path.join(src_folder, sub_folder, pycFile) + '\n')
+                the_file = os.path.join(src_folder, sub_folder, pycFile)
+                # print(f'Attempting to decompile file: {os.path.join(src_folder, sub_folder, pycFile)}')
                 result = self._decompile(
                     source_folder,
                     destination_folder,
@@ -178,24 +207,25 @@ class Py37PythonDecompiler:
                     split_result_folders
                 )
                 if not is_success(result):
-                    print('Failed to decompile file, attempting to use alternative decompiler.')
-                    os.remove(py_full_file_path)
+                    # print('Failed to decompile file, attempting to use alternative decompiler.')
                     copyfile(copied_file_path, pyc_full_file_path)
                     os.remove(copied_file_path)
                     if not Unpyc3PyDecompiler.decompile_file(pyc_full_file_path, throw_on_error=False):
-                        print('Failed to decompile, even with alternative decompiler')
+                        print(f'FAILED: {the_file}')
                     else:
-                        print('Success! File decompiled successfully via alternative method.')
-                        os.remove(pyc_full_file_path)
+                        print(f'SUCCESS: {the_file}')
+                        # print(f'Removing {py_full_file_path}')
+                        os.remove(py_full_file_path)
                         result = _DecompileResultData(os.path.realpath(pyc_full_file_path))
                         result.result = 1
                 else:
+                    print(f'SUCCESS: {the_file}')
                     os.remove(copied_file_path)
                 completed_callback(result)
                 results.append(result)
 
         # Print results summary and CSV results file if requested
-        sys.stdout.write('\b\b\b\b\b\b')
+        print('\b\b\b\b\b\b')
         if total == 0:
             print('      \nError, no compiled Python files found in source folder')
             return
@@ -538,7 +568,7 @@ def completed_callback(result) -> bool:
     completed += 1
 
     # Write percentage complete to stdout
-    #sys.stdout.write('\b\b\b\b{:3}%'.format(int(completed/total*100)))
+    #print('\b\b\b\b{:3}%'.format(int(completed/total*100)))
     #sys.stdout.flush()
     
     if result.result == 0:

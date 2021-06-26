@@ -30,6 +30,9 @@ Utilities/*.pyc
 **/*.pyc
 */*.pyc
 */*.pyo
+custom_scripts_for_decompile/**/*.pyc
+custom_scripts_for_decompile/**/*.pyo
+custom_scripts_for_decompile/**/*.py
 
 # Release
 **/*.7z
