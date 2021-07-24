@@ -33,6 +33,7 @@ class Unpyc3PythonCompiler:
         Compile a mod using unpyc3.
 
         """
+        os.makedirs(folder_path_to_output_ts4script_to, exist_ok=True)
         from compile_utils import _remove_files_conflicting_with_decompile, _replace_renamed_files
         _remove_files_conflicting_with_decompile(decompile_ea_scripts=False)
         names_of_modules_include = tuple(names_of_modules_include)
