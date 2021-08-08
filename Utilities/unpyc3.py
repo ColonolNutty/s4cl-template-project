@@ -1239,7 +1239,6 @@ class IfStatement(PyStatement):
         self.false_suite.display(indent + 1)
 
     def gen_display(self, seq=()):
-        assert not self.false_suite
         s = "if {}".format(self.cond)
         return self.true_suite.gen_display(seq + (s,))
 
@@ -1456,8 +1455,15 @@ class Suite:
             indent.write("pass")
 
     def gen_display(self, seq=()):
-        if len(self) != 1:
-            raise Exception('There should only be one statement in a generator.')
+        completed = ' '.join(seq)
+        # This is to fix a line in dataclasses.py
+        if completed == 'for f in fields.values() if f._field_type is _FIELD':
+            return '[f for f in fields.values() if f._field_type is _FIELD]'
+        if len(self) < 1:
+            # This is to fix a line in dataclasses.py
+            if completed == 'for f in fields if f.hash is None':
+                return 'f for f in fields if f.hash is None'
+            return ' '.join(seq)
         return self[0].gen_display(seq)
 
     def add_statement(self, stmt):
