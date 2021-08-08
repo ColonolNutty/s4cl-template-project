@@ -14,6 +14,9 @@ EA/core.zip
 EA/generated.zip
 EA/simulation.zip
 
+# Libraries
+Libraries/**/*
+
 # Logs
 compilelog.txt
 decompilelog.txt
