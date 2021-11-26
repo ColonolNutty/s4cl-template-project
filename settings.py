@@ -14,7 +14,7 @@ creator_name = ''
 # 3. It will decompile the EA scripts and put them inside of the folder: <Project>/EA/...
 # 4. Inside of the <Project>/EA folder, you should see four folders (base, core, generated, simulation)
 # 5. Highlight all four of those folders and right click them. Then do Mark Directory as... Sources Root
-should_decompile_ea_scripts: bool = False
+should_decompile_ea_scripts: bool = True
 
 # If you want to decompile scripts from another authors mod
 # 1. Create a folder in your project with the name decompiled. i.e. <Project>/custom_scripts_for_decompile
@@ -52,7 +52,7 @@ else:
 # If this path is not found properly when trying to decompile, change it to the location where you have installed The Sims 4 at, this would be the folder that contains the GameVersion.txt file
 if os.name != 'nt':
     # Mac
-    game_folder = os.path.join(os.environ['HOME'], 'Applications', 'The Sims 4.app', 'Contents', 'Data', 'Simulation', 'Gameplay')
+    game_folder = os.path.join(os.environ['HOME'], 'Applications', 'The Sims 4.app', 'Contents')
     print(f'Game folder path: {game_folder}')
 else:
     # noinspection PyBroadException
